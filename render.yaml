@@ -2,12 +2,15 @@ services:
   - type: web
     name: n8n
     env: docker
-    region: frankfurt # optional (defaults to oregon)
-    plan: free # optional (defaults to starter)
-    branch: main # optional (defaults to master)
+    region: frankfurt  # Optional (defaults to oregon)
+    plan: free  # Optional (defaults to starter)
+    branch: main  # Optional (defaults to master)
     numInstances: 1
     healthCheckPath: /healthz
+
+    # --- Variables d'environnement ---
     envVars:
+      # Configuration de la base de données (PostgreSQL)
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
@@ -30,6 +33,8 @@ services:
         fromDatabase:
           name: n8nDB
           property: password
+
+      # Configuration de base de n8n
       - key: PORT
         value: 5678
       - key: N8N_LOG_LEVEL
@@ -43,7 +48,12 @@ services:
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
+      # Activation des nœuds et packages communautaires
+      - key: N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE
+        value: "true"
+
+# --- Base de données ---
 databases:
   - name: n8nDB
-    region: frankfurt # optional (defaults to oregon)
+    region: frankfurt  # Optional (defaults to oregon)
     plan: free
