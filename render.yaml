@@ -36,20 +36,28 @@ services:
 
       # Configuration de base de n8n
       - key: PORT
-        value: 5678
+        value: "5678"
       - key: N8N_LOG_LEVEL
-        value: info
+        value: "info"
       - key: GENERIC_TIMEZONE
-        value: Europe/Paris
+        value: "Europe/Paris"
       - key: TZ
-        value: Europe/Paris
+        value: "Europe/Paris"
       - key: N8N_DEFAULT_LOCALE
-        value: fr
+        value: "fr"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
       # Activation des nœuds et packages communautaires
       - key: N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE
+        value: "true"
+
+      # Configuration des task runners
+      - key: N8N_RUNNERS_ENABLED
+        value: "true"
+
+      # Configuration des permissions
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
         value: "true"
 
 # --- Base de données ---
